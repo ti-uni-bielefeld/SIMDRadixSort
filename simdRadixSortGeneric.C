@@ -74,7 +74,7 @@ template <int NUMBYTES>
 void randBytes(uint8_t b[NUMBYTES])
 {
   for (int i = 0; i < NUMBYTES; i++)
-    b[i] = random() & 0xff;
+    b[i] = rand() & 0xff;
 }
 
 // distinguish between integer and floating point
@@ -115,7 +115,7 @@ struct _RandWideUniform<T, true>
 template <typename T>
 struct RandWideUniform : _RandWideUniform<T, std::is_floating_point<T>::value>
 {
-  RandWideUniform(unsigned int seed) { srandom(seed); }
+  RandWideUniform(unsigned int seed) { srand(seed); }
 };
 
 // -------------------------------------------------------------------------

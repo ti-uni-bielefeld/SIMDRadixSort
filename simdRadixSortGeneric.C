@@ -205,12 +205,10 @@ generateData(int repeats, SortIndex num, bool noDuplicates,
 {
   typedef typename
     KeyPayloadInfo<KEYTYPE, WithPayload>::UIntElementType ElemType;
-  ElemType *d;
   // allocate contiguous data for multiple repeats
-  int resAlloc = posix_memalign((void**)&d, 64,
-				repeats * num * sizeof(ElemType));
-  if (resAlloc != 0) {
-    fprintf(stderr, "failed to allocate memory (%s)\n", strerror(resAlloc));
+  ElemType *d = (ElemType*) simd_aligned_malloc(64, repeats * num * sizeof(ElemType));
+  if (d == NULL) {
+    fprintf(stderr, "failed to allocate memory (%s)\n", strerror(errno));
     exit(-1);
   }  
   SortIndex i = 0, j;

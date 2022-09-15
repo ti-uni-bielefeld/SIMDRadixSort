@@ -808,6 +808,36 @@ namespace radix {
 	writePos[1] -= popcnt[1];
 	mask_compressstoreu(d + writePos[1], sortBits[1], keyPayload);
       }
+      // example: vector with 4 elements
+      //
+      // r0                                      r1
+      // 1 0 1 1 | 0 1 0 1 | 1 1 1 0 | 0 0 0 1 | 1 0 0
+      // w0                                      w1
+      //
+      // r0                            r1
+      // 1 0 1 1 | 0 1 0 1 | 1 1 1 0 | x x x x | 1 0 0        vs: 0 0 0 1
+      // w0                                      w1
+      //
+      //           r0                  r1
+      // 0 0 0 x | 0 1 0 1 | 1 1 1 0 | x x x 1 | 1 0 0        vs: 1 0 1 1
+      //       w0                            w1
+      //
+      //                     r0        r1
+      // 0 0 0 0 | x x x x | 1 1 1 0 | 1 1 1 1 | 1 0 0        vs: 0 1 0 1
+      //           w0                  w1
+      //
+      //                     r1
+      //                     r0       
+      // 0 0 0 0 | 0 0 x x | x x 1 1 | 1 1 1 1 | 1 0 0        vs: 1 1 1 0
+      //               w0        w1
+      //
+      // postamble:
+      //                     r1
+      //                     r0       
+      // 0 0 0 0 | 0 0 0 1 | 1 1 1 1 | 1 1 1 1 | 1 0 0        vs: 1 1 1 0
+      //                 w0
+      //                 w1
+      //
       // do we have one unprocessed vector in vectorStore?
       if (readPos[0] == readPos[1]) {
 	// test bits and count

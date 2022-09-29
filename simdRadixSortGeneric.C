@@ -23,6 +23,7 @@
 // 
 // ===========================================================================
 
+#include "SIMDAlloc.H"
 #include "SIMDRadixSortGeneric.H"
 #include "SIMDRadixSortGenericThreads.H"
 #include "TimeMeasurement.H"
@@ -47,7 +48,9 @@
   !defined(__clang__) &&			\
   !defined(__INTEL_COMPILER) &&			\
   (__GNUC__ >= 9)
-#define HAS_PARALLEL_STD_SORT			
+// 30. Sep 22 (rm): TODO: commented out, weird linker errors on g++ 10, maybe
+// tbb-lib is missing
+// #define HAS_PARALLEL_STD_SORT			
 #endif
 
 #ifdef HAS_PARALLEL_STD_SORT

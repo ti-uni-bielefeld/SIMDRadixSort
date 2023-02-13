@@ -189,7 +189,7 @@ protected:
   std::condition_variable cnd;
 
   // master-slave communication
-  std::vector<std::vector<Region> > slaveResults;
+  std::vector<std::vector<Region>> slaveResults;
   std::vector<int> slavesReady;
   // https://stackoverflow.com/questions/16465633
   std::mutex *masterMtx;

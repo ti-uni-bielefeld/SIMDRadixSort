@@ -59,7 +59,7 @@
 // #define THREAD_STATS
 
 // for TimeMeasurement.H
-using namespace ns_simd;
+using namespace simd;
 using namespace radix;
 
 // =========================================================================

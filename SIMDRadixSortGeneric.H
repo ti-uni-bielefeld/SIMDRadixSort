@@ -35,8 +35,8 @@
 // - I prefer const-ref arguments instead of value arguments in order to
 //   avoid implicit type casts.
 
-#ifndef _SIMD_RADIX_SORT_GENERIC_H_
-#define _SIMD_RADIX_SORT_GENERIC_H_
+#ifndef SIMD_RADIX_SORT_GENERIC_H_
+#define SIMD_RADIX_SORT_GENERIC_H_
 
 #include <stdint.h>
 #include <stdio.h>

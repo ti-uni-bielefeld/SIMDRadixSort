@@ -23,8 +23,8 @@
 //
 // ===========================================================================
 
-#ifndef _SIMD_RADIX_SORT_GENERIC_THREADS_H_
-#define _SIMD_RADIX_SORT_GENERIC_THREADS_H_
+#ifndef SIMD_RADIX_SORT_GENERIC_THREADS_H_
+#define SIMD_RADIX_SORT_GENERIC_THREADS_H_
 
 #include "SIMDRadixSortGeneric.H"
 

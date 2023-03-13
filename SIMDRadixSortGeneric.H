@@ -514,7 +514,7 @@ struct SeqRadixBitSorter
     SortIndex l = left, r = right;
     T bitMask;
     setBitNo(bitMask, bitNo);
-    while (1) {
+    while (true) {
       // advance left index
       while ((l <= r) && TestCondition<UP>::isZero(d[l] & bitMask)) l++;
       // advance right index
@@ -544,7 +544,7 @@ struct SeqRadixBitSorter2
     SortIndex l = left, r = right;
     T bitMask, dl, dr;
     setBitNo(bitMask, bitNo);
-    while (1) {
+    while (true) {
       // advance left index
       while ((l <= r) && TestCondition<UP>::isZero((dl = d[l]) & bitMask)) l++;
       // advance right index
@@ -581,7 +581,7 @@ struct SeqRadixBitSorterRightLimit
     SortIndex l = left, r = right;
     T bitMask;
     setBitNo(bitMask, bitNo);
-    while (1) {
+    while (true) {
       // advance left index
       while ((l <= r) && TestCondition<UP>::isZero(d[l] & bitMask)) l++;
       // advance right index (but not below minRight)

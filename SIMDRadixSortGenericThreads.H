@@ -540,7 +540,7 @@ public:
   void sortThreadFunc(int threadIdx)
   {
     // endless loop
-    while (1) {
+    while (true) {
       // lock mutex
       std::unique_lock<std::mutex> lck(mtx);
       // wait on condition variable, p.70 with lambda
@@ -609,7 +609,7 @@ public:
       } else {
         // --- I have no master ---
         // inner loop
-        while (1) {
+        while (true) {
           /*
           printf("t %d l %ld r %ld b %d u %d m %d s %d\n",
                  threadIdx, left, right, bitNo, up,

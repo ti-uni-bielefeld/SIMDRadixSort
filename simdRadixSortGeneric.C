@@ -205,7 +205,7 @@ typename KeyPayloadInfo<KEYTYPE, WithPayload>::UIntElementType *generateData(
   // allocate contiguous data for multiple repeats
   ElemType *d =
     (ElemType *) simd_aligned_malloc(64, repeats * num * sizeof(ElemType));
-  if (d == NULL) {
+  if (d == nullptr) {
     fprintf(stderr, "failed to allocate memory (%s)\n", strerror(errno));
     exit(-1);
   }
@@ -420,7 +420,7 @@ int main(int argc, char *argv[])
   int rndMode       = atoi(argv[1]);
   unsigned int seed = (unsigned int) atol(argv[2]);
   if (seed == 0) {
-    seed = time(NULL);
+    seed = time(nullptr);
     printf("random seed %u\n", seed);
   }
   static_assert(sizeof(long) == 8, "long should have 8 bytes");
@@ -463,7 +463,7 @@ int main(int argc, char *argv[])
 #ifdef THREAD_STATS
   RadixThreadStats *threadStats = new RadixThreadStats(nthreads);
 #else
-  RadixThreadStats *threadStats = 0;
+  RadixThreadStats *threadStats = nullptr;
 #endif
   printf("sorting, %d repetitions\n", rep);
   fflush(stdout);

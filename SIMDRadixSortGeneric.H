@@ -38,8 +38,8 @@
 #ifndef SIMD_RADIX_SORT_GENERIC_H_
 #define SIMD_RADIX_SORT_GENERIC_H_
 
-#include <stdint.h>
-#include <stdio.h>
+#include <cstdint>
+#include <cstdio>
 #include <x86intrin.h>
 
 // std::swap
@@ -48,8 +48,8 @@
 #include <type_traits>
 
 // for insertion sort
-#include <stdlib.h>
-#include <string.h>
+#include <cstdlib>
+#include <cstring>
 #include <sys/types.h>
 
 #if defined(__AVX512F__) && defined(__AVX512BW__) && defined(__AVX512DQ__)

@@ -77,7 +77,7 @@ struct uint128_t
 {
   uint64_t half[2];
 
-  uint128_t() {}
+  uint128_t() = default;
 
   uint128_t(int x)
   {
@@ -274,7 +274,7 @@ struct SIMDVector
 {
   using Type = T;
   __m512i zmm;
-  SIMDVector() {}
+  SIMDVector() = default;
   SIMDVector(const __m512i &x) { zmm = x; }
   SIMDVector &operator=(const __m512i &x)
   {

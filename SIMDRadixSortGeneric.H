@@ -35,6 +35,7 @@
 // - I prefer const-ref arguments instead of value arguments in order to
 //   avoid implicit type casts.
 
+#pragma once
 #ifndef SIMD_RADIX_SORT_GENERIC_H_
 #define SIMD_RADIX_SORT_GENERIC_H_
 

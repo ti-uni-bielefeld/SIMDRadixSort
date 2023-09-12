@@ -299,8 +299,7 @@ struct BitMask;
     using Type     = TYPE;                                                     \
     using MaskType = MASKTYPE;                                                 \
     MASKTYPE k;                                                                \
-    BitMask()                                                                  \
-    {}                                                                         \
+    BitMask() {}                                                               \
     BitMask(const MASKTYPE &x)                                                 \
     {                                                                          \
       k = x;                                                                   \

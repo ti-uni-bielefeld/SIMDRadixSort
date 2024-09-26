@@ -1,0 +1,11 @@
+.vscode/
+*.tmp
+*.o
+*.ilk
+*.pdb
+*.exe
+*.bc
+*.ii
+*.s
+*.d
+simdRadixSortGeneric

@@ -22,7 +22,11 @@
 #
 #===========================================================================
 
-binaries = simdRadixSortGeneric
+binaries = $(patsubst %.C,%,$(wildcard src/*.C))
+
+objects = $(addsuffix .o,$(binaries))
+
+depend_files = $(addsuffix .d,$(binaries))
 
 CXX ?= g++
 
@@ -47,26 +51,41 @@ optflags ?= -O3 -funroll-loops
 
 flags = $(warning_flags) -fno-var-tracking $(flags_avx512) -pthread -ggdb -std=c++11 $(optflags)
 
-.PHONY: all
-all: $(binaries)
-
-%.o: %.C
-	$(CXX) -MMD -MP $(flags) -c $< -o $@
-$(binaries): %: %.o
-	$(CXX) $(flags) -o $@ $< $(libraries)
-
 # os dependent definitions
-ifeq ($(OS),Windows_NT) 
-RM = del /Q /F
+ifeq ($(OS),Windows_NT)
+RMDIR_R = rmdir /S /Q
+MKDIR = mkdir
 NULL = NUL
 else
-RM = rm -f
+RMDIR_R = rm -rf
+MKDIR = mkdir -p
 NULL = /dev/null
 endif
 
+build_dir ?= build
+# make sure build_dir is not the root directory
+ifeq ($(realpath $(build_dir)),$(realpath .))
+$(error build directory cannot be the project root directory)
+endif
+
+.PHONY: all
+all: $(binaries)
+
+.PHONY: $(binaries)
+$(binaries): %: $(build_dir)/%
+
+$(addprefix $(build_dir)/,$(objects)): $(build_dir)/%.o: %.C
+	@$(MKDIR) $(dir $@)
+	$(CXX) -MMD -MP $(flags) -c $< -o $@
+
+$(addprefix $(build_dir)/,$(binaries)): %: %.o
+	@$(MKDIR) $(dir $@)
+	$(CXX) $(flags) -o $@ $<
+
 .PHONY: clean
 clean:
-	$(RM) $(binaries) *.o *.d *~ *.tmp >$(NULL) 2>&1
+	@echo "removing build directory \"$(build_dir)\""
+	$(RMDIR_R) $(build_dir) >$(NULL) 2>&1
 
 .PHONY: info
 info:
@@ -75,5 +94,6 @@ info:
 	@echo "compiler:" $(CXX)
 	@echo "flags:   " $(flags)
 	@echo "binaries:" $(binaries)
+	@echo "objects: " $(objects)
 
--include *.d
+-include $(addprefix $(build_dir)/,$(depend_files))

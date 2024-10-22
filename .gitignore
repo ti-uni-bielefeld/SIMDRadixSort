@@ -1,4 +1,5 @@
 .vscode/
+build*/
 *.tmp
 *.o
 *.ilk
@@ -8,4 +9,3 @@
 *.ii
 *.s
 *.d
-simdRadixSortGeneric
